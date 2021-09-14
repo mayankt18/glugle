@@ -1,19 +1,16 @@
-{% extends 'home/base.html' %}
-{% load static %}
-
-{% block title %}Probe | Homepage{% endblock %}
+{% extends 'base.html' %}
 
 {% block content %}
-
 <div class="col">
 
 
     <div class="col mt-5">
-        <img src="{% static 'images/logo.png' %}" class="mx-auto d-block" style="width: 25%; height: 25%">
+        <img src="{{url_for('static', filename='./images/logo.png')}}" class="mx-auto d-block"
+            style="width: 25%; height: 25%">
     </div>
 
 
-    <form class="mt-5 container" name="search" style="width: 50%" action="{% url 'search' %}">
+    <form class="mt-5 container" name="search" style="width: 50%" action="/search_results">
         <div class="col-6 mx-auto input-group">
             <input type="text" class="form-control" name="search" placeholder="search...">
             <button type="submit" class="btn btn-success">Search</button>
