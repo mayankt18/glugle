@@ -1,4 +1,3 @@
-import json
 from bs4 import BeautifulSoup
 import requests
 import pymongo
@@ -6,6 +5,7 @@ import pymongo
 
 class Crawler():
     connect_url = 'mongodb+srv://mayank:mymongodb@cluster0.2ytui.mongodb.net/results?retryWrites=true&w=majority'
+
     client = pymongo.MongoClient(connect_url)
 
     db = client.results
@@ -18,7 +18,7 @@ class Crawler():
             print(f'Crawling url: {url} at depth: {depth}')
             response = requests.get(url)
 
-        except:
+        except BaseException:
             print(f'Failed to perform HTTP GET request on {url}')
             return
 
@@ -26,13 +26,15 @@ class Crawler():
 
         try:
             title = soup.find('title').text
+
             description = ''
 
             for tag in soup.findAll():
                 if tag.name == 'p':
                     description += tag.text.strip().replace('\n', '')
 
-        except:
+        except BaseException:
+            print("Failed to retrieve title and description\n")
             return
 
         query = {
@@ -42,7 +44,9 @@ class Crawler():
         }
 
         search_results = self.db.search_results
+
         search_results.insert_one(query)
+
         search_results.create_index([
             ('url', pymongo.TEXT),
             ('title', pymongo.TEXT),
@@ -57,9 +61,12 @@ class Crawler():
         for link in links:
             try:
                 if 'http' in link['href']:
+                    self.crawl(link['href'], depth - 1)
+                elif link['href'][0] == '/':
+                    link['href'] = url + link['href']
                     self.crawl(link['href'], depth-1)
-
             except KeyError:
+                print("no links to retrieve in the website entered!!!")
                 pass
 
         self.client.close()
@@ -67,4 +74,5 @@ class Crawler():
 
 crawler = Crawler()
 
-crawler.crawl('https://www.geeksforgeeks.org/data-structures/?ref=shm', 1)
+crawler.crawl(
+    'https://en.wikipedia.org/wiki/Lists_of_films', 2)
