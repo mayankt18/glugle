@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import pymongo
+import urllib.parse
 
 
 class Crawler():
@@ -26,7 +27,6 @@ class Crawler():
 
         try:
             title = soup.find('title').text
-
             description = ''
 
             for tag in soup.findAll():
@@ -62,8 +62,8 @@ class Crawler():
             try:
                 if 'http' in link['href']:
                     self.crawl(link['href'], depth - 1)
-                elif link['href'][0] == '/':
-                    link['href'] = url + link['href']
+                else:
+                    link['href'] = urllib.parse.urljoin(url, link['href'])
                     self.crawl(link['href'], depth-1)
             except KeyError:
                 print("no links to retrieve in the website entered!!!")
@@ -75,4 +75,4 @@ class Crawler():
 crawler = Crawler()
 
 crawler.crawl(
-    'https://en.wikipedia.org/wiki/Lists_of_films', 2)
+    'https://www.rottentomatoes.com/browse/opening', 1)

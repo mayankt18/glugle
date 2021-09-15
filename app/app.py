@@ -14,19 +14,24 @@ def entry_point():
 def search_results():
     connect_url = 'mongodb+srv://mayank:mymongodb@cluster0.2ytui.mongodb.net/results?retryWrites=true&w=majority'
 
-    client = pymongo.MongoClient(connect_url)
+    client = pymongo.MongoClient(connect_url, connect=False)
     db = client.results
     search_string = request.args.get('search')
 
     query = db.search_results.find(
-        {'$text': {'$search': search_string}})
+        {'$text': {'$search': search_string, '$caseSensitive': False}})
 
     search_result = []
 
     for doc in query:
-        search_result.append(doc)
+        exist = False
+        for result in search_result:
+            if result['title'] == doc['title'] and result['url'] == doc['url']:
+                exist = True
+                break
 
-    print(search_result)
+        if exist == False:
+            search_result.append(doc)
 
     client.close()
 

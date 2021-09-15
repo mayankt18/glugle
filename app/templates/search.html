@@ -10,9 +10,13 @@
         </div>
     </form>
 
+    <div class="container mx-5 mt-5">
+        <p style="color: teal;"><b>Search result for '{{search_string}}'</b></p>
+    </div>
+
     {% if search_result %}
     {% for link in search_result %}
-    <div class="mt-3">
+    <div class="container mt-3" style="width:90%">
 
         <div class="col">
             <strong><a href="{{ link.url }}">{{ link.title }}</a></strong>
