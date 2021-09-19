@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 import pymongo
 from flask_paginate import Pagination, get_page_args
+from ranking import Ranking
+
 
 app = Flask(__name__)
 
@@ -26,23 +28,29 @@ def search_results():
     for doc in query:
         exist = False
         for result in search_result:
-            if result['title'] == doc['title'] and result['url'] == doc['url']:
+            if result['title'] == doc['title'] or result['url'] == doc['url']:
                 exist = True
                 break
 
         if exist == False:
             search_result.append(doc)
 
+    rank = Ranking(search_result, search_string)
+
+    ranked_result = rank.sorted_results()
+
     client.close()
 
     page, per_page, offset = get_page_args(page_parameter='page',
                                            per_page_parameter='per_page')
-    total = len(search_result)
+
+    total = len(ranked_result)
 
     pagination = Pagination(page=page, per_page=per_page, total=total,
                             css_framework='bootstrap4')
+
     return render_template('search.html',
-                           search_result=search_result[offset:offset+per_page],
+                           search_result=ranked_result[offset:offset+per_page],
                            page=page,
                            per_page=per_page,
                            pagination=pagination,
