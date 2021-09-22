@@ -20,9 +20,6 @@ class Ranking:
 
     def sorted_results(self):
 
-        def sort_score(result):
-            return result['score']
-
         ranked_searches = self.ranked_results()
 
         sorted_searches = sorted(
