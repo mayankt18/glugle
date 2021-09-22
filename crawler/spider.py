@@ -100,4 +100,4 @@ class Crawler():
 crawler = Crawler()
 
 crawler.start_crawl(
-    'https://www.rottentomatoes.com/browse/opening', 1)
+    'https://www.geeksforgeeks.org/', 1)
