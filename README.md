@@ -4,6 +4,7 @@
 
 1. Clone the git in a folder
 2. Make a virtual environment in the folder
+
 **For Windows**
 ```
 pip install virtualenv
