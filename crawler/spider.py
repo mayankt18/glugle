@@ -5,7 +5,7 @@ import urllib.parse
 
 
 class Crawler():
-    connect_url = 'mongodb+srv://mayank:mymongodb@cluster0.2ytui.mongodb.net/results?retryWrites=true&w=majority'
+    connect_url = 'mongodb+srv://thahobbist:zb7m3bm5v5@cluster0.j5lqa.mongodb.net/results?retryWrites=true&w=majority'
 
     client = pymongo.MongoClient(connect_url)
 
@@ -41,6 +41,7 @@ class Crawler():
             'url': url,
             'title': title,
             'description': description,
+            'score' : 0,
         }
 
         search_results = self.db.search_results
@@ -50,7 +51,8 @@ class Crawler():
         search_results.create_index([
             ('url', pymongo.TEXT),
             ('title', pymongo.TEXT),
-            ('description', pymongo.TEXT)
+            ('description', pymongo.TEXT),
+            ('score', 1 )
         ], name='search_results', default_language='english')
 
         if depth == 0:
@@ -75,4 +77,4 @@ class Crawler():
 crawler = Crawler()
 
 crawler.crawl(
-    'https://www.rottentomatoes.com/browse/opening', 1)
+    'https://www.w3schools.com/python/', 1)
