@@ -1,11 +1,12 @@
 from bs4 import BeautifulSoup
 import requests
 import pymongo
+import os
 import urllib.parse
 
 
 class Crawler():
-    connect_url = 'mongodb+srv://thahobbist:zb7m3bm5v5@cluster0.j5lqa.mongodb.net/results?retryWrites=true&w=majority'
+    connect_url = os.getenv('MONGO_URL')
 
     client = pymongo.MongoClient(connect_url)
 

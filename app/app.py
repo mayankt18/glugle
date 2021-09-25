@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import pymongo
+import os
 from flask_paginate import Pagination, get_page_args
 from ranking import Ranking
 
@@ -14,7 +15,7 @@ def entry_point():
 
 @app.route('/search_results')
 def search_results():
-    connect_url = 'mongodb+srv://thahobbist:zb7m3bm5v5@cluster0.j5lqa.mongodb.net/results?retryWrites=true&w=majority'
+    connect_url = os.getenv('MONGO_URL')
 
     client = pymongo.MongoClient(connect_url, connect=False)
     db = client.results
