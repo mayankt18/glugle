@@ -4,6 +4,7 @@ We are going to make the web app using [flask library](https://www.youtube.com/w
 There will be two pages one the homepage and the other the search results page.
 
 ## Basic structure of the web application:
+<img src="diagrams/webapp_workflow.png" width="100%">
 The application consists of two functions. 
 
 - The entry_point function which is present at route “/” and it’s only purpose is to render the homepage template. The homepage template is a form with an input field and a submit button which redirects you to the search_results function with the input data.
