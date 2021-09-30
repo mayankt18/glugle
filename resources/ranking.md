@@ -17,7 +17,7 @@ Once the search results are fetched from the database, next comes sorting them i
 
 - **Using Quotation marks (“ ”):** If the search query is entered with double quotes then the query is considered a single keyword and only those results will be shown which have the complete query in them. The format is “< query >”
 
-- **Using Colon(: ):** Colon is used for filtering out results based on the website you want the results to be from. The format is < query >:< site >
+- **Using Colon( : ):** Colon is used for filtering out results based on the website you want the results to be from. The format is < query >:< site >
 
 - **Using Hyphen( - ):** Hyphen is used to make sure a certain word doesn’t appear in the search result. The format is < query >-< word >
 
