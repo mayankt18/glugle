@@ -1,36 +1,49 @@
-# **WEB CRAWLER**
+# WEB CRAWLER
 
-Now you have seen how search engines work , so let's start with putting the first stone of your search engine.
+The word “crawler” itself can be intimidating to many people but it is basically a script having a few lines of code. 
 
 A web crawler, spider, or search engine bot downloads and indexes content from all over the Internet. They're called "web crawlers" because crawling is the technical term for automatically accessing a website and obtaining data via a software program.
+The crawler goes from page to page and stores the data fetched from it in the database, so that the information can be retrieved when it's needed.
+## APPROACH TO BUILD THE CRAWLER
+- We are going to use the following python libraries to achieve the task
+    - “requests” library to fetch the pages.
+    - “beautifulsoup4”  to parse the response received from the response object.
+    - “pymongo” to connect to mongodb where we are going to store the data.
+    - Yes that’s it, that’s all we need.
+- We will build a python class named “Crawler” inside the crawler.py file.
+- The first thing we want to do is to make a connection with our database using “pymongo” library.
+- After the connection is made we are going to define two methods inside the class “Crawler” named “start_crawling” and “crawl”. 
+- Both of the methods mentioned above are going to take two arguments:
+    - “url” (string containing the url to the page we want to parse)
+    - “depth” (integer parameter to control the number of pages your program crawls)
+  
+      <img src="diagrams/crawler.png" width="50%">
 
+### THE “start_crawl” FUNCTION
+This function starts the process of crawling. It performs the task of collecting the links in robots.txt and storing them in a list named “disallowed_links”. 
+The “url”, “depth” and “disallowed_links” are then passed to the crawl function where the actual process of crawling begins.
+**Note that some urls may not have any robots.txt file so, use a try except block while looking for robots.**
 
+## THE “crawl” FUNCTION
+This is the function where most of the things are done. First we define it with the parameters “url”, “depth” and “disallowed_links”. Then inside the function the following takes place.
+- It tries to connect to the provided url using the “requests” library.
+- If request returns a response it parses the content returned from the first step using the “Beautifulsoup” library and looks for <title> tags and <p> tags which it saves in the title and description variables respectively.
+- After completion of all the above steps it creates a dictionary named “query”with url, title and description in it which will be saved in the database.
+```
+    query = {
+        	‘url’ : url,
+        	‘title’ : title,
+        	‘description’ : description
+        }
+```
+- This query is saved in the database using ```insert_one()``` method for mongodb.
+- Next it checks if “depth” is equal to zero or not. If it is zero the functions stops, else it collects all the links present in the page using “Beautifulsoup” and stores them in a list named “links”
+- It then loops through all the links and for each link it calls the crawl with the depth variable decremented by one  like this:
+```
+    self.crawl(link, depth-1)
+```
+- Atlast it closes the connection it made with the database.
 
-
-# *The Bot*
- It learns what every web page on the web is about, so that the information can be retrieved when it's needed.These bots are needed in search engines. 
-
-# *Import the libraries*
-
-   We use ```pip install package-name``` to install the libraries . Then in the `spider.py` we *import* them.
-   ```python
-    from bs4 import BeautifulSoup
-    import requests
-    import pymongo
-    import os
-    import urllib.parse
-   ```
-    
-
-### So , what exactly happens ?
-
-- We pass the site URL to the start function  along with the depth.
-- The  URL gets used as a method to check for robots.txt . Store the disallowed links in a list. Pass - the disallowed links ,depth, url  to the self crawl function.
-- self crawl function performs http get requests and retrieves the title and description , url .
-- Stores the search results including url, title , description in the database.
-- Check for the depth if it's zero.
-- Store all the reference anchor tags in a list and ignore the disallowed links. Then check for http in it to get the html links. 
-- Decrease the depth and since self crawl is recursive , call self crawl again .
 
 # *Program Structure*
 
@@ -90,7 +103,7 @@ A web crawler, spider, or search engine bot downloads and indexes content from a
    #create an object to pass the function
    my_crawler = Crawler() 
    #send url and depth as parameters to start crawling
-   crawler.start(url,depth) 
+   my_crawler.start(url,depth) 
 
 ```
 
@@ -108,8 +121,3 @@ The packages used are  **BeautifulSoup, urllib, request and  pymongo.**
 [Pymongo python documentation](https://pymongo.readthedocs.io/en/stable/)
 
 Use **mongodb atlas** to store data retrieved from the crawler.
-  
-
-
-
-
