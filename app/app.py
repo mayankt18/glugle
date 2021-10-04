@@ -3,6 +3,7 @@ import pymongo
 import os
 from flask_paginate import Pagination, get_page_args
 from ranking import Ranking
+from query_processing import QueryProcessing
 
 
 app = Flask(__name__)
@@ -20,6 +21,9 @@ def search_results():
     client = pymongo.MongoClient(connect_url, connect=False)
     db = client.results
     search_string = request.args.get('search')
+
+    processor = QueryProcessing(search_string)
+    search_string = processor.processor()
 
     query = db.search_results.find(
         {'$text': {'$search': search_string, '$caseSensitive': False}})
