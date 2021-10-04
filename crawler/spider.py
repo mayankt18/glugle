@@ -14,7 +14,29 @@ class Crawler():
 
     search_results = []
 
-    def crawl(self, url, depth):
+    def start_crawl(self, url, depth):
+        robot_url = urllib.parse.urljoin(url, '/robots.txt')
+        try:
+            robots = requests.get(robot_url)
+        except BaseException:
+            print("robots not found")
+            self.crawl(url, depth)
+
+        soup = BeautifulSoup(robots.text, 'lxml')
+
+        content = soup.find('p').text
+
+        disallowed_links = []
+
+        for word in content:
+            if word[0] == '/':
+                disallowed_links.append(urllib.parse.urljoin(url, word))
+            else:
+                disallowed_links.append(word)
+        print("got rebots!!!")
+        self.crawl(url, depth, disallowed_links)
+
+    def crawl(self, url, depth, *disallowed_links):
 
         try:
             print(f'Crawling url: {url} at depth: {depth}')
@@ -42,7 +64,7 @@ class Crawler():
             'url': url,
             'title': title,
             'description': description,
-            'score' : 0,
+            'score': 0,
         }
 
         search_results = self.db.search_results
@@ -53,7 +75,7 @@ class Crawler():
             ('url', pymongo.TEXT),
             ('title', pymongo.TEXT),
             ('description', pymongo.TEXT),
-            ('score', 1 )
+            ('score', 1)
         ], name='search_results', default_language='english')
 
         if depth == 0:
@@ -63,11 +85,12 @@ class Crawler():
 
         for link in links:
             try:
-                if 'http' in link['href']:
-                    self.crawl(link['href'], depth - 1)
-                else:
-                    link['href'] = urllib.parse.urljoin(url, link['href'])
-                    self.crawl(link['href'], depth-1)
+                if link['href'] not in disallowed_links:
+                    if 'http' in link['href']:
+                        self.crawl(link['href'], depth - 1)
+                    else:
+                        link['href'] = urllib.parse.urljoin(url, link['href'])
+                        self.crawl(link['href'], depth-1)
             except KeyError:
                 print("no links to retrieve in the website entered!!!")
                 pass
@@ -77,5 +100,5 @@ class Crawler():
 
 crawler = Crawler()
 
-crawler.crawl(
-    'https://www.w3schools.com/python/', 1)
+crawler.start_crawl(
+    'https://www.geeksforgeeks.org/', 1)
