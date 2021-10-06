@@ -22,8 +22,8 @@ def search_results():
     db = client.results
     search_string = request.args.get('search')
 
-    processor = QueryProcessing(search_string)
-    search_string = processor.processor()
+    # processor = QueryProcessing(search_string)
+    # search_string = processor.processor()
 
     query = db.search_results.find(
         {'$text': {'$search': search_string, '$caseSensitive': False}})

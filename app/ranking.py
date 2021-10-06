@@ -4,9 +4,10 @@ search result"""
 from operator import itemgetter
 import string
 
+
 class Ranking:
     def __init__(self, results, query):
-        self.results = results #
+        self.results = results
         self.query = query
 
     def search(self):
@@ -19,7 +20,7 @@ class Ranking:
             mytable = self.query.maketrans(x, y, z)
             res.insert(0, self.query.translate(mytable))
         else:
-            if ':' in self.query: #filter by url search query => query:url
+            if ':' in self.query:  # filter by url search query => query:url
                 key = self.query.split(':')[0]
                 fil = self.query.split(':')[1]
                 print(key)
@@ -34,7 +35,7 @@ class Ranking:
                 for result in self.results:
                     if fil.lower() not in result['title'].lower() or fil.lower() not in result['description'].lower():
                         filtered.append(result)
-                self.results = filtered        
+                self.results = filtered
             else:
                 key = self.query
 

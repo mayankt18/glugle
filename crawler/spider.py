@@ -6,7 +6,7 @@ import urllib.parse
 
 
 class Crawler():
-    connect_url = os.getenv('MONGO_URL')
+    connect_url = 'mongodb+srv://mayank:mymongodb@cluster0.2ytui.mongodb.net/results?retryWrites=true&w=majority'
 
     client = pymongo.MongoClient(connect_url)
 
@@ -101,4 +101,4 @@ class Crawler():
 crawler = Crawler()
 
 crawler.start_crawl(
-    'https://www.geeksforgeeks.org/', 1)
+    'https://moz.com/top500', 2)
