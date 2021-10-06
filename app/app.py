@@ -23,10 +23,13 @@ def search_results():
     search_string = request.args.get('search')
 
     processor = QueryProcessing(search_string)
-    search_string = processor.processor()
+    keywords = processor.processor()
 
-    query = db.search_results.find(
-        {'$text': {'$search': search_string, '$caseSensitive': False}})
+    query = []
+
+    for keyword in keywords:
+        query.extend(db.search_results.find(
+            {'$text': {'$search': search_string, '$caseSensitive': False}}))
 
     search_result = []
 
