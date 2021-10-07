@@ -1,6 +1,7 @@
 """
 Program to process the search_query.
 """
+
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -8,6 +9,7 @@ from nltk.stem.porter import PorterStemmer
 from spellchecker import SpellChecker
 import string
 import re
+
 
 class QueryProcessing():
     def __init__(self, search_string):
@@ -19,7 +21,7 @@ class QueryProcessing():
         self.search_string = self.search_string.lower()
 
         self.search_string = re.sub(r'\d+', '', self.search_string)
-        
+
         translator = str.maketrans('', '', string.punctuation)
         self.search_string = self.search_string.translate(translator)
 
@@ -35,5 +37,5 @@ class QueryProcessing():
         spell = SpellChecker()
         for i in range(len(tokens)):
             tokens[i] = spell.correction(tokens[i])
-        
+
         return tokens

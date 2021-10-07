@@ -51,6 +51,7 @@ class Ranking:
                     result['score'] += 2
                 if key.lower() in result['description'].lower():
                     result['score'] += 1
+
         return self.results
 
     def sorted_results(self):
@@ -58,6 +59,6 @@ class Ranking:
         ranked_searches = self.ranked_results()
 
         sorted_searches = sorted(
-            ranked_searches, key=itemgetter('score'), reverse=True)
+            ranked_searches, key=itemgetter('score', 'popularity'), reverse=True)
 
         return sorted_searches
