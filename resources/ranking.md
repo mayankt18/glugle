@@ -21,4 +21,10 @@ Once the search results are fetched from the database, next comes sorting them i
 
 - **Using Hyphen( - ):** Hyphen is used to make sure a certain word doesn’t appear in the search result. The format is < query >-< word >
 
-
+## Optional things to make searching more effective:
+- ### **PageRank Algorithm**
+  - http://ilpubs.stanford.edu:8090/422/1/1999-66.pdf
+  - https://en.wikipedia.org/wiki/PageRank
+- ### **Query Processing**
+  - Using [nltk](https://pypi.org/project/nltk/) and [pyspellchecker](https://pypi.org/project/pyspellchecker/) to process search query
+  
