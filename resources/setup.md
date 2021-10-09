@@ -1,0 +1,50 @@
+# **Python Installation guide**
+
+# *For Windows* 
+
+You have to do no more than download a file and run it . 
+The python 3 version package can be downloaded from : 
+
+[download](https://www.python.org/downloads/windows/)
+
+Remember to select the add to path option to run it from any directory in your system.
+
+
+# *For MacOS*
+
+You can download the python 3 version package from : 
+
+[download](https://www.python.org/downloads/macos/)
+
+Run it to install python
+
+
+# *For LinuxOS* 
+
+Check if python is already installed:
+  
+```python
+    python3 --version
+```
+
+If you get an output like:
+```python
+  Python 3.x.x
+```
+Skip the next part.
+If you don't, follow the given commands.
+
+# *Debian/Ubuntu*
+
+```python
+sudo apt-get update && sudo apt upgrade -y
+sudo apt-get install software-properties-common
+sudo apt install python3
+```
+
+
+# *Fedora/rpm based distros*
+
+```python
+sudo dnf install python3 python3-devel
+```
