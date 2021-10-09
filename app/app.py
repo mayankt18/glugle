@@ -3,6 +3,8 @@ import pymongo
 import os
 from flask_paginate import Pagination, get_page_args
 from ranking import Ranking
+from query_processing import QueryProcessing
+import time
 
 
 app = Flask(__name__)
@@ -15,14 +17,27 @@ def entry_point():
 
 @app.route('/search_results')
 def search_results():
-    connect_url = os.getenv('MONGO_URL')
+    connect_url = 'mongodb+srv://mayank:mymongodb@cluster0.2ytui.mongodb.net/results?retryWrites=true&w=majority'
 
     client = pymongo.MongoClient(connect_url, connect=False)
+
     db = client.results
+
     search_string = request.args.get('search')
 
-    query = db.search_results.find(
-        {'$text': {'$search': search_string, '$caseSensitive': False}})
+    processor = QueryProcessing(search_string)
+    keywords = processor.processor()
+
+    query = []
+
+    start = time.time()
+
+    for keyword in keywords:
+        query.extend(db.search_results.find(
+            {'$text': {'$search': search_string, '$caseSensitive': False}}))
+
+    end = time.time()
+    print(f"time to execute: {end-start}")
 
     search_result = []
 

@@ -3,16 +3,19 @@ import requests
 import pymongo
 import os
 import urllib.parse
+from popular_links import Popularity
 
 
 class Crawler():
-    connect_url = os.getenv('MONGO_URL')
+    connect_url = 'mongodb+srv://mayank:mymongodb@cluster0.2ytui.mongodb.net/results?retryWrites=true&w=majority'
 
     client = pymongo.MongoClient(connect_url)
 
     db = client.results
 
     search_results = []
+
+    url_count = 1
 
     def start_crawl(self, url, depth):
         robot_url = urllib.parse.urljoin(url, '/robots.txt')
@@ -39,7 +42,8 @@ class Crawler():
     def crawl(self, url, depth, *disallowed_links):
 
         try:
-            print(f'Crawling url: {url} at depth: {depth}')
+            print(f'Crawling url {self.url_count}: {url} at depth: {depth}')
+            self.url_count += 1
             response = requests.get(url)
 
         except BaseException:
@@ -60,11 +64,15 @@ class Crawler():
             print("Failed to retrieve title and description\n")
             return
 
+        popularity = Popularity(url)
+        popularity_score = popularity.popularity_score()
+
         query = {
             'url': url,
             'title': title,
             'description': description,
             'score': 0,
+            'popularity': popularity_score,
         }
 
         search_results = self.db.search_results
@@ -75,7 +83,8 @@ class Crawler():
             ('url', pymongo.TEXT),
             ('title', pymongo.TEXT),
             ('description', pymongo.TEXT),
-            ('score', 1)
+            ('score', 1),
+            ('popularity', 1)
         ], name='search_results', default_language='english')
 
         if depth == 0:
@@ -101,4 +110,4 @@ class Crawler():
 crawler = Crawler()
 
 crawler.start_crawl(
-    'https://www.geeksforgeeks.org/', 1)
+    'https://en.wikipedia.org/', 2)
