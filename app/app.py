@@ -17,7 +17,7 @@ def entry_point():
 
 @app.route('/search_results')
 def search_results():
-    connect_url = 'mongodb+srv://mayank:mymongodb@cluster0.2ytui.mongodb.net/results?retryWrites=true&w=majority'
+    connect_url = 'mongodb://127.0.0.1:27017/'
 
     client = pymongo.MongoClient(connect_url, connect=False)
 
