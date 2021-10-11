@@ -1,3 +1,16 @@
+# Quick Links
+
+- [How to run the project](https://github.com/mayankt18/glugle#search-engine-made-using-python-and-flask)
+    
+    ### Documentation
+    - [Introduction](https://github.com/mayankt18/glugle/blob/master/resources/search%20engine.md#search-engine-basics)
+    - [Python Setup](https://github.com/mayankt18/glugle/blob/master/resources/setup.md#python-installation-guide)
+    - [Mongo DB setup](https://github.com/mayankt18/glugle/blob/master/resources/mongodb.md)
+    - [Crawler](https://github.com/mayankt18/glugle/blob/master/resources/crawler.md#web-crawler)
+    - [Flask Guide](https://github.com/mayankt18/glugle/blob/master/resources/web%20app.md#flask-guide)
+    - [Web application](https://github.com/mayankt18/glugle/blob/master/resources/web%20app.md#the-web-app)
+    - [Ranking the searches](https://github.com/mayankt18/glugle/blob/master/resources/ranking.md#ranking-mechanism)  
+
 # Search engine made using python and flask
 
 ## Project Setup
