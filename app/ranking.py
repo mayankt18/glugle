@@ -59,6 +59,6 @@ class Ranking:
         ranked_searches = self.ranked_results()
 
         sorted_searches = sorted(
-            ranked_searches, key=itemgetter('score', 'popularity'), reverse=True)
+            ranked_searches, key=itemgetter('popularity', 'score'), reverse=True)
 
         return sorted_searches

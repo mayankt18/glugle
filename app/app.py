@@ -34,7 +34,7 @@ def search_results():
 
     for keyword in keywords:
         query.extend(db.search_results.find(
-            {'$text': {'$search': search_string, '$caseSensitive': False}}))
+            {'$text': {'$search': keyword, '$caseSensitive': False}}))
 
     end = time.time()
     print(f"time to execute: {end-start}")

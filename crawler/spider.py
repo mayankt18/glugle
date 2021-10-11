@@ -110,4 +110,4 @@ class Crawler():
 crawler = Crawler()
 
 crawler.start_crawl(
-    'https://en.wikipedia.org/', 2)
+    'https://www.python.org/', 1)
