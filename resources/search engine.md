@@ -28,7 +28,7 @@ Ranking means to rank the search results found from the above operation in order
 
 # **TECHNOLOGIES USED IN THE PROJECT**
 - PYTHON PROGRAMMING LANGUAGE
-- MONGODB
+- MONGODB (Text based searching is very easy in mongodb)
 - FLASK FRAMEWORK
 
 ##### You are welcome to use any other alternatives to the technologies mentioned above.

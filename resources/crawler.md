@@ -21,10 +21,12 @@ The crawler goes from page to page and stores the data fetched from it in the da
 
 - We will build a **python class named “Crawler”** inside the crawler.py file.
 
-- The first thing we want to do is to make a [connection with our database using “pymongo” library](https://www.mongodb.com/cloud/atlas).
+- The first thing we want to do is to make a connection with our database using “pymongo” library.
+  
 	```python
 	client = pymongo.MongoClient(connect_url_to_mongodb)
 	```
+> Note that if you are running mongodb on your computer your connection url would be "*mongodb://127.0.0.1:27017/*" as mongodb runs on port 27017 by default.
 
 - After the connection is made we are going to define two methods inside the class “Crawler” named ```“start_crawling”``` and ```“crawl”```.
 

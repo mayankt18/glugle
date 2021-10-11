@@ -11,7 +11,7 @@ Once the search results are fetched from the database, next comes sorting them i
 4. For each `keyword` in the title of the `result`, it is given score +2, and for each `keyword` in the description of the `result`, it is given score +1.
 5. Sort the `results` object in the descending order of score of each `result`. 
 
-## More Searching Filters
+## More Searching Filters you can use
 
  Apart from the regular searching technique, there are also some methods to further filter the search results.  
 
@@ -23,8 +23,10 @@ Once the search results are fetched from the database, next comes sorting them i
 
 ## Optional things to make searching more effective:
 - ### **PageRank Algorithm**
-  - http://ilpubs.stanford.edu:8090/422/1/1999-66.pdf
+    Page Rank algorithm is based on the assumption that more popular websites are to receive more links from other websites. You can apply the pagerank algorithm along with the algorithm mentioned above for effective search results.
+    One way can be to add a field named pagerank_score in the object that you insert in the database, and while giving the search results sort the results in order of `pagerank_score` and `score`.
+  <br />
+
+  To know more about Pagerank algorithm refer the following links.
   - https://en.wikipedia.org/wiki/PageRank
-- ### **Query Processing**
-  - Using [nltk](https://pypi.org/project/nltk/) and [pyspellchecker](https://pypi.org/project/pyspellchecker/) to process search query
-  
+  - http://ilpubs.stanford.edu:8090/422/1/1999-66.pdf
