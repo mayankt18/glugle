@@ -52,3 +52,4 @@ def hello_world():
 
 If a user visits ```http://localhost:5000/hello``` URL, the output of the hello_world() function will be rendered in the browser. The ```add_url_rule()``` function of an application object can also be used to bind a URL with the function as in the above example.
 
+
