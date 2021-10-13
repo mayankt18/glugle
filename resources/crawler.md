@@ -99,11 +99,9 @@ query = {
 
 - It then loops through all the links and for each link it calls the "*crawl*" with the depth variable decremented by one like this:
 
-`
-
- self.crawl(link, depth-1)
-
-`
+```python
+self.crawl(link, depth-1)
+```
 
 - Atlast it closes the connection it made with the database using *.close()* method.
   
