@@ -20,8 +20,6 @@ class QueryProcessing():
 
         self.search_string = self.search_string.lower()
 
-        self.search_string = re.sub(r'\d+', '', self.search_string)
-
         translator = str.maketrans('', '', string.punctuation)
         self.search_string = self.search_string.translate(translator)
 
