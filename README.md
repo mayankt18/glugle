@@ -3,13 +3,14 @@
 - [How to run the project](https://github.com/mayankt18/glugle#search-engine-made-using-python-and-flask)
     
     ### Documentation
-    - [Introduction](https://github.com/mayankt18/glugle/blob/master/resources/search%20engine.md#search-engine-basics)
-    - [Python Setup](https://github.com/mayankt18/glugle/blob/master/resources/setup.md#python-installation-guide)
-    - [Mongo DB setup](https://github.com/mayankt18/glugle/blob/master/resources/mongodb.md)
-    - [Crawler](https://github.com/mayankt18/glugle/blob/master/resources/crawler.md#web-crawler)
-    - [Flask Guide](https://github.com/mayankt18/glugle/blob/master/resources/flask.md#flask-guide)
-    - [Web application](https://github.com/mayankt18/glugle/blob/master/resources/web%20app.md#the-web-app)
-    - [Ranking the searches](https://github.com/mayankt18/glugle/blob/master/resources/ranking.md#ranking-mechanism)  
+    - [Introduction](https://github.com/mayankt18/glugle/blob/master/resources/1.I.search%20engine.md#search-engine-basics)
+    - Setup ([Linux](https://github.com/mayankt18/glugle/blob/master/resources/1.II.setup.md#python-installation-guide) / [Windows](https://github.com/mayankt18/glugle/blob/master/resources/1.II.setup_win.md#project-setup-in-windows))
+    - [Mongo DB setup](https://github.com/mayankt18/glugle/blob/master/resources/2.I.mongodb.md#mongodb-installation-linux-ubuntu)
+    - [Crawler](https://github.com/mayankt18/glugle/blob/master/resources/2.II.crawler.md#web-crawler)
+    - [Flask Guide](https://github.com/mayankt18/glugle/blob/master/resources/3.flask.md#flask-guide)
+    - [Web application](https://github.com/mayankt18/glugle/blob/master/resources/4.web%20app.md#the-web-app)
+    - [Query Processing](https://github.com/mayankt18/glugle/blob/master/resources/5.ranking.md#query-preprocessing)
+    - [Ranking the searches](https://github.com/mayankt18/glugle/blob/master/resources/5.ranking.md#ranking-mechanism)  
 
 # Search engine made using python and flask
 
