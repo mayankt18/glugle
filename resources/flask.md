@@ -1,6 +1,6 @@
 # **FLASK GUIDE**
 
-In one line Flask is a **python web framework** that helps in creating web applications. Although flask is a vast topic, in this article we are going to learn the part of flask which we require for building our project.
+Flask is a **python web framework** that helps in creating web applications. Although flask is a vast topic, in this article we are going to learn the part of flask which we require for building our project.
 
 ## Installation
 

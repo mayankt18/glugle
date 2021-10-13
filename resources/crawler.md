@@ -11,11 +11,11 @@ The crawler goes from page to page and stores the data fetched from it in the da
 
 - We are going to use the following python libraries to achieve the task
 
-	1. ```requests``` library to fetch the pages.
+	1. `requests` library to fetch the pages.
 
-	2. ```beautifulsoup4``` to parse the response received from the response object.
+	2. `beautifulsoup4` to parse the response received from the response object.
 
-	3. ```pymongo``` to connect to mongodb where we are going to store the data.
+	3. `pymongo` to connect to mongodb where we are going to store the data.
 
 - **Yes that’s it, that’s all we need.**
 
@@ -23,18 +23,18 @@ The crawler goes from page to page and stores the data fetched from it in the da
 
 - The first thing we want to do is to make a connection with our database using “pymongo” library.
   
-	```python
+	`python
 	client = pymongo.MongoClient(connect_url_to_mongodb)
-	```
+	`
 > Note that if you are running mongodb on your computer your connection url would be "*mongodb://127.0.0.1:27017/*" as mongodb runs on port 27017 by default.
 
-- After the connection is made we are going to define two methods inside the class “Crawler” named ```“start_crawling”``` and ```“crawl”```.
+- After the connection is made we are going to define two methods inside the class “Crawler” named `start_crawling` and `crawl`.
 
 - Both of the methods mentioned above are going to take two arguments:
 
-- ```“url”``` (string containing the url to the page we want to parse)
+- `url` (string containing the url to the page we want to parse)
 
-- ```“depth”```(integer parameter to control the number of pages your program crawls)
+- `depth`(integer parameter to control the number of pages your program crawls)
 
    <img  src="diagrams/crawler.png"  width="50%">
 
@@ -44,16 +44,16 @@ The crawler goes from page to page and stores the data fetched from it in the da
 
 This function starts the process of crawling. It performs the task of collecting the links in robots.txt and storing them in a list named “disallowed_links”.
 > **How to connect to url using requests and get data from desired tags**
-```
- import urllib.parse
- complete_url = urllib.parse.join(domain_name, '/path')
- response = requests.get(complete_url)
+```python
+import urllib.parse
+complete_url = urllib.parse.join(domain_name, '/path')
+response = requests.get(complete_url)
 ```
 > *try to figure out the problem which arises if you don't use **urllib.parse.join()**.*
 
 > *The response obtained is then processed using beautifulsoup. Example of how data is obtained using beautifulsoup is given below.*
 
-```
+```python
 import requests
 from bs4 import BeautifulSoup
 
@@ -82,8 +82,7 @@ This is the function where most of the things are done. First we define it with 
 
 - After completion of all the above steps it creates a dictionary named “query”with url, title and description in it which will be saved in the database.
 
-```
-
+```python
 query = {
 
 	‘url’ : url,
@@ -100,11 +99,11 @@ query = {
 
 - It then loops through all the links and for each link it calls the "*crawl*" with the depth variable decremented by one like this:
 
-```
+`
 
  self.crawl(link, depth-1)
 
-```
+`
 
 - Atlast it closes the connection it made with the database using *.close()* method.
   
@@ -113,7 +112,7 @@ query = {
 
   
 
-The packages can be installed using ```pip install package-name```
+The packages can be installed using `pip install package-name`
 
 The packages used are **BeautifulSoup, urllib, request and pymongo.**
 
