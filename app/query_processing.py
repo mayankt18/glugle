@@ -10,7 +10,6 @@ from spellchecker import SpellChecker
 import string
 import re
 
-
 class QueryProcessing():
     def __init__(self, search_string):
         self.search_string = search_string
