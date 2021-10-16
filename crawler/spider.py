@@ -4,6 +4,7 @@ import pymongo
 import os
 import urllib.parse
 from popular_links import Popularity
+import sys
 
 
 class Crawler():
@@ -110,4 +111,4 @@ class Crawler():
 crawler = Crawler()
 
 crawler.start_crawl(
-    'https://www.python.org/', 1)
+    sys.argv[1], int(sys.argv[2]))
