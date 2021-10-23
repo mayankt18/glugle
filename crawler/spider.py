@@ -28,16 +28,19 @@ class Crawler():
 
         soup = BeautifulSoup(robots.text, 'lxml')
 
-        content = soup.find('p').text
+        sauce = soup.find('p').text
+
+        content = sauce.split()
 
         disallowed_links = []
 
         for word in content:
             if word[0] == '/':
                 disallowed_links.append(urllib.parse.urljoin(url, word))
-            else:
+            elif 'http' in word:
                 disallowed_links.append(word)
         print("got rebots!!!")
+
         self.crawl(url, depth, disallowed_links)
 
     def crawl(self, url, depth, *disallowed_links):
@@ -95,12 +98,13 @@ class Crawler():
 
         for link in links:
             try:
-                if link['href'] not in disallowed_links:
+                if link['href'] not in disallowed_links[0]:
                     if 'http' in link['href']:
-                        self.crawl(link['href'], depth - 1)
+                        self.crawl(link['href'], depth -
+                                   1, disallowed_links[0])
                     else:
                         link['href'] = urllib.parse.urljoin(url, link['href'])
-                        self.crawl(link['href'], depth-1)
+                        self.crawl(link['href'], depth-1, disallowed_links[0])
             except KeyError:
                 print("no links to retrieve in the website entered!!!")
                 pass
