@@ -1,11 +1,13 @@
-"""Program to decide the rank of the search results
-on the basis of whether or not the given query exist in the 
-search result"""
 from operator import itemgetter
 import string
 
 
 class Ranking:
+    """
+    Decides the rank of the search results
+    on the basis of whether or not the given query exist in the 
+    search result
+    """
     def __init__(self, results, query):
         self.results = results
         self.query = query

@@ -18,7 +18,7 @@ class Crawler():
 
     url_count = 1
 
-    def start_crawl(self, url, depth):
+    def start_crawl(self, url, depth=1):
         robot_url = urllib.parse.urljoin(url, '/robots.txt')
         try:
             robots = requests.get(robot_url)

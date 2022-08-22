@@ -1,7 +1,3 @@
-"""
-Program to process the search_query.
-"""
-
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -11,6 +7,10 @@ import string
 import re
 
 class QueryProcessing():
+    """
+    Process the search_query.
+    """
+
     def __init__(self, search_string):
         self.search_string = search_string
 

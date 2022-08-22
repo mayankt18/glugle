@@ -8,6 +8,7 @@ class Popularity():
                        'https://pypi.org/', 'https://www.indiatoday.in/', 'https://www.geeksforgeeks.org/',
                        'https://stackoverflow.com/']
 
+    # Considering the initial ps (popularity score) to be zero
     ps = 0
 
     def __init__(self, url):
