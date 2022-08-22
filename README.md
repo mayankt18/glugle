@@ -1,3 +1,6 @@
+[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
+
+
 # Quick Links
 
 - [How to run the project](https://github.com/mayankt18/glugle#search-engine-made-using-python-and-flask)
@@ -12,7 +15,7 @@
     - [Query Processing](https://github.com/mayankt18/glugle/blob/master/resources/5.ranking.md#query-preprocessing)
     - [Ranking the searches](https://github.com/mayankt18/glugle/blob/master/resources/5.ranking.md#ranking-mechanism)  
 
-# Search engine made using python and flask
+# Search engine made using Python and flask
 
 ## Project Setup
 
